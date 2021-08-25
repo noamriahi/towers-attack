@@ -6,7 +6,11 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHitPoints=5;
     int currentHitPoint = 0;
+    Enemy enemy;
 
+    void Start() {
+        enemy = GetComponent<Enemy>();    
+    }
     void OnEnable()
     {
         currentHitPoint = maxHitPoints;
@@ -15,12 +19,13 @@ public class EnemyHealth : MonoBehaviour
     void OnParticleCollision(GameObject other) {
         ProcessHit();
     }
+
     void ProcessHit()
     {
         currentHitPoint--;
-        Debug.Log(currentHitPoint);
         if(currentHitPoint<=0){
             gameObject.SetActive(false);
+            enemy.RewardGold();
         }
     }
 }
