@@ -28,11 +28,11 @@ public class Bank : MonoBehaviour
         currentBalance -= Mathf.Abs(amount);
         UpdateDisplay();
 
-        
         if(currentBalance<0)
         {
             ReloadScene();
         }
+        
     }
     void UpdateDisplay()
     {
