@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,19 +11,18 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        bank = FindObjectOfType<Bank>();
+        bank = FindObjectOfType<Bank>();        
     }
 
     public void RewardGold()
     {
-        if(bank==null){ return; }
+        if(bank == null) { return; }
         bank.Deposit(goldReward);
     }
-    
+
     public void StealGold()
     {
-        if(bank==null){ return; }
+        if(bank == null) { return; }
         bank.Withdraw(goldPenalty);
     }
-
 }

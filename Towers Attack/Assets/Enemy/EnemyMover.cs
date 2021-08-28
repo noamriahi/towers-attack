@@ -1,57 +1,72 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] List<WayPoint> path =new List<WayPoint>();
-    [SerializeField] [Range(0f,5f)] float speed = 1f;
+    [SerializeField] List<Waypoint> path = new List<Waypoint>();
+    [SerializeField] [Range(0f, 5f)] float speed = 1f; 
 
     Enemy enemy;
-    
-    void Start() {
-        enemy = GetComponent<Enemy>();     
-    }
 
     void OnEnable()
     {
         FindPath();
-        ReturnToStrart();
+        ReturnToStart();
         StartCoroutine(FollowPath());
     }
+
+    void Start()
+    {
+        enemy = GetComponent<Enemy>();
+    }
+
     void FindPath()
     {
         path.Clear();
 
-        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Path");
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Path");
 
-        foreach(GameObject waypoint in waypoints)
+        foreach(GameObject tile in tiles) 
         {
-            path.Add(waypoint.GetComponent<WayPoint>());
+            Waypoint waypoint = tile.GetComponent<Waypoint>();
+
+            if(waypoint != null)
+            {
+                path.Add(waypoint);
+            }
         }
     }
-    void ReturnToStrart()
+
+    void ReturnToStart()
     {
-        transform.position=path[0].transform.position;
+        transform.position = path[0].transform.position;
     }
-    IEnumerator FollowPath()
+
+    void FinishPath()
     {
-        foreach (WayPoint waypoint in path)
+        enemy.StealGold();
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator FollowPath() 
+    {
+        foreach(Waypoint waypoint in path) 
         {
-            Vector3 startPosition= transform.position;
+            Vector3 startPosition = transform.position;
             Vector3 endPosition = waypoint.transform.position;
             float travelPercent = 0f;
 
             transform.LookAt(endPosition);
 
-            while(travelPercent<1){
+            while(travelPercent < 1f) {
                 travelPercent += Time.deltaTime * speed;
-                transform.position = Vector3.Lerp(startPosition,endPosition,travelPercent);
+                transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
                 yield return new WaitForEndOfFrame();
             }
-
         }
-        enemy.StealGold();
-        gameObject.SetActive(false);
+
+        FinishPath();
     }
 }

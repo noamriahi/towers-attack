@@ -51,7 +51,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -91,10 +90,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5672325927823913723}
-  - component: {fileID: -1371466469913907287}
-  - component: {fileID: 3236171575052614647}
-  - component: {fileID: -353372698423440733}
-  - component: {fileID: 6024770835756883674}
+  - component: {fileID: 6201464922997147545}
+  - component: {fileID: -3396775281884943018}
+  - component: {fileID: 4221329146210860171}
+  - component: {fileID: -2997265570297890518}
   m_Layer: 0
   m_Name: Ram
   m_TagString: Untagged
@@ -117,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1371466469913907287
+--- !u!114 &6201464922997147545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,12 +125,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5040643765344069697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02a1088bb405a74ca19738d203a2e2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b1584ec732e6aa4ba9c88c2d4a15002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   path: []
   speed: 1
---- !u!65 &3236171575052614647
+--- !u!65 &-3396775281884943018
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +143,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 2.5, z: 0}
---- !u!114 &-353372698423440733
+--- !u!114 &4221329146210860171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,12 +152,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5040643765344069697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f54f10530a5aca0439d834784399c331, type: 3}
+  m_Script: {fileID: 11500000, guid: 3927679a94c974e4bb70f750e84057aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitPoints: 5
-  difficultyRamp: 1
---- !u!114 &6024770835756883674
+  currentHitPoints: 0
+--- !u!114 &-2997265570297890518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,8 +166,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5040643765344069697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41bfe8004ce27ce40b2ff84eecafcbf5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d096e6f0549697478ca5feb08a1634b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldReward: 25
-  goldPenalty: 25

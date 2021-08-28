@@ -1,20 +1,21 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WayPoint : MonoBehaviour
+public class Waypoint : MonoBehaviour
 {
-    [SerializeField] Tower towerprefabs;
+    [SerializeField] Tower towerPrefab;
+    
+    [SerializeField] bool isPlaceable;
+    public bool IsPlaceable { get { return isPlaceable; } }
 
-    [SerializeField] bool isPlaceble = false;
-    public bool IsPlaceble{get {return isPlaceble;}}
-    
-    private void OnMouseDown() {
-        if(isPlaceble){
-            bool isPlaced = towerprefabs.CreateTower(towerprefabs,transform.position);
-            // Instantiate(towerprefabs,transform.position,Quaternion.identity);
-            isPlaceble = !isPlaced;
+
+    void OnMouseDown()
+    {
+        if(isPlaceable)
+        {
+            bool isPlaced = towerPrefab.CreateTower(towerPrefab, transform.position);
+            isPlaceable = !isPlaced;
         }
-    
     }
 }
