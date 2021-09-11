@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] [Range(0f, 5f)] float speed = 1f; 
-
+    
     List<Node> path = new List<Node>();
-
+    
     Enemy enemy;
     GridManager gridManager;
     Pathfinder pathfinder;
@@ -17,8 +17,6 @@ public class EnemyMover : MonoBehaviour
     {
         ReturnToStart();
         RecalculatePath(true);
-        
-        
     }
 
     void Awake()
@@ -34,15 +32,16 @@ public class EnemyMover : MonoBehaviour
 
         if(resetPath)
         {
-            coordinates= pathfinder.StartCoordinates;
+            coordinates = pathfinder.StartCoordinates;
         }
         else
         {
-            coordinates = gridManager.GetCoordinateFromPosition(transform.position);
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
         }
+
         StopAllCoroutines();
         path.Clear();
-        path =pathfinder.GetNewPath(coordinates);
+        path = pathfinder.GetNewPath(coordinates);
         StartCoroutine(FollowPath());
     }
 
@@ -59,10 +58,10 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator FollowPath() 
     {
-        for(int i=1 ; i < path.Count ; i++)
+        for(int i = 1; i < path.Count; i++) 
         {
             Vector3 startPosition = transform.position;
-            Vector3 endPosition =  gridManager.GetPositionFromCoordinates(path[i].coordinates);
+            Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
             float travelPercent = 0f;
 
             transform.LookAt(endPosition);
@@ -73,7 +72,7 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
-
+        
         FinishPath();
     }
 }

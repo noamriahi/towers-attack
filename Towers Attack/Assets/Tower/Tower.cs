@@ -11,6 +11,7 @@ public class Tower : MonoBehaviour
     {
         StartCoroutine(Build());
     }
+
     public bool CreateTower(Tower tower, Vector3 position)
     {
         Bank bank = FindObjectOfType<Bank>();
@@ -29,23 +30,25 @@ public class Tower : MonoBehaviour
 
         return false;
     }
+
     IEnumerator Build()
     {
         foreach(Transform child in transform)
         {
             child.gameObject.SetActive(false);
-            foreach(Transform grandChild in child)
+            foreach(Transform grandchild in child)
             {
-                grandChild.gameObject.SetActive(false);
+                grandchild.gameObject.SetActive(false);
             }
         }
+
         foreach(Transform child in transform)
         {
             child.gameObject.SetActive(true);
             yield return new WaitForSeconds(buildDelay);
-            foreach(Transform grandChild in child)
+            foreach(Transform grandchild in child)
             {
-                grandChild.gameObject.SetActive(true);
+                grandchild.gameObject.SetActive(true);
             }
         }
     }

@@ -19,26 +19,27 @@ public class Tile : MonoBehaviour
         pathfinder = FindObjectOfType<Pathfinder>();
     }
 
-    void Start() 
+    void Start()
     {
         if(gridManager != null)
         {
-            coordinates = gridManager.GetCoordinateFromPosition(transform.position);
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
 
             if(!isPlaceable)
             {
-                gridManager.BlockedNode(coordinates);
+                gridManager.BlockNode(coordinates);
             }
         }
     }
+
     void OnMouseDown()
     {
         if(gridManager.GetNode(coordinates).isWalkable && !pathfinder.WillBlockPath(coordinates))
         {
-            bool isSuccessful = towerPrefab.CreateTower(towerPrefab, transform.position);
-            if(isSuccessful)
+            bool isSuccussful = towerPrefab.CreateTower(towerPrefab, transform.position);
+            if(isSuccussful)
             {
-                gridManager.BlockedNode(coordinates);
+                gridManager.BlockNode(coordinates);
                 pathfinder.NotifyReceivers();
             }
         }
